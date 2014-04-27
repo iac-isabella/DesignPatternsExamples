@@ -28,7 +28,11 @@
         </ul>
       </header>
       <section>
-        <h2>
+        <blockquote>
+<p>Os padrões Composite e Decorator são padrões estruturais e estão relacionados a como classes e objetos são compostos de forma a gerar estruturas maiores e mais complexas.</p>
+</blockquote>
+
+<h2>
 <a name="padr%C3%A3o-composite" class="anchor" href="#padr%C3%A3o-composite"><span class="octicon octicon-link"></span></a>Padrão Composite</h2>
 
 <h3>
@@ -51,7 +55,30 @@ Por exemplo, em interfaces gráficas um elemento gráfico pode ser constituído 
 </ul><h3>
 <a name="exemplo" class="anchor" href="#exemplo"><span class="octicon octicon-link"></span></a>Exemplo</h3>
 
-<p>Para fins de demonstração do uso do padrão composite segue um exemplo, cujo cujo código será exibido em Java e em Scala. Este código se encontra disponível no GitHub no branch "code". Observe o diagrama de classes do exemplo:</p>
+<p>Para fins de demonstração do uso do padrão composite segue um exemplo, cujo código será exibido em Java e em Scala. Este código se encontra disponível no GitHub no branch "code". Observe o diagrama de classes do exemplo:</p>
+
+<h2>
+<a name="padr%C3%A3o-decorator" class="anchor" href="#padr%C3%A3o-decorator"><span class="octicon octicon-link"></span></a>Padrão Decorator</h2>
+
+<h3>
+<a name="contexto-e-aplica%C3%A7%C3%B5es-1" class="anchor" href="#contexto-e-aplica%C3%A7%C3%B5es-1"><span class="octicon octicon-link"></span></a>Contexto e Aplicações</h3>
+
+<p>Decorator ou wrapper, é um padrão de projeto de software que permite adicionar um comportamento a um objeto já existente em tempo de execução, ou seja, agrega dinamicamente responsabilidades adicionais a um objeto.
+Ele permite acrescentar ou remover responsabilidades a objetos individuais dinamicamente, de forma transparente e evita a explosão de subclasses para prover todas as combinações de responsabilidades.</p>
+
+<p><strong>Resumindo:</strong></p>
+
+<ul>
+<li>
+<em>Objetivo:</em> Estender a responsabilidade de um objeto dinamicamente, em tempo de execução, sem a necessidade de criação de subclasses. </li>
+<li>
+<em>Problema típico:</em> Suponha que um determinado objeto deva possuir novas responsabilidades em determinado momento de seu ciclo de utilização. A questão é: com fazer com que estas responsabilidades não sejam alocadas a todos os objetos da classe à qual pertence, já que elas são específicas dele, ou seja, como adicionar responsabilidades ao objeto quando o mesmo já foi criado? </li>
+<li>
+<em>Solução:</em> Criar uma classe que será a mãe da classe à qual o objeto pertence e de toda e qualquer responsabilidade adicional, que será chamada de classe decoradora. As responsabilidades adicionais serão derivadas desta classe. Estas farão referência à classe do objeto, adicionando o comportamento desejado.</li>
+</ul><h3>
+<a name="exemplo-1" class="anchor" href="#exemplo-1"><span class="octicon octicon-link"></span></a>Exemplo</h3>
+
+<p>Para fins de demonstração do uso do padrão decorator segue um exemplo, cujo código será exibido em Java e em Scala. Este código se encontra disponível no GitHub no branch "code". Observe o diagrama de classes do exemplo:</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/iac-isabella">iac-isabella</a></p>
