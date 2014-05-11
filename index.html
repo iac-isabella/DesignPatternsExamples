@@ -1,33 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Design Patterns : Composite and Decorator by iac-isabella</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Design Patterns : Composite and Decorator : Trabalho 0 da disciplina de Programação Orientada a Objetos 2. Feito por Isabella de Albuquerque." />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Design Patterns : Composite and Decorator</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Design Patterns : Composite and Decorator</h1>
-        <p>Trabalho 0 da disciplina de Programação Orientada a Objetos 2. Feito por Isabella de Albuquerque.</p>
 
-        <p class="view"><a href="https://github.com/iac-isabella/DesignPatternsExamples">View the Project on GitHub <small>iac-isabella/DesignPatternsExamples</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/iac-isabella/DesignPatternsExamples">View on GitHub</a>
 
+          <h1 id="project_title">Design Patterns : Composite and Decorator</h1>
+          <h2 id="project_tagline">Trabalho 0 da disciplina de Programação Orientada a Objetos 2. Feito por Isabella de Albuquerque.</h2>
 
-        <ul>
-          <li><a href="https://github.com/iac-isabella/DesignPatternsExamples/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/iac-isabella/DesignPatternsExamples/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/iac-isabella/DesignPatternsExamples">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/iac-isabella/DesignPatternsExamples/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/iac-isabella/DesignPatternsExamples/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <blockquote>
 <p>Os padrões Composite e Decorator são padrões estruturais e estão relacionados a como classes e objetos são compostos de forma a gerar estruturas maiores e mais complexas.</p>
 </blockquote>
@@ -55,8 +58,7 @@ Por exemplo, em interfaces gráficas um elemento gráfico pode ser constituído 
 </ul><h3>
 <a name="exemplo" class="anchor" href="#exemplo"><span class="octicon octicon-link"></span></a>Exemplo</h3>
 
-<p>Para fins de demonstração do uso do padrão composite segue um exemplo, cujo código será exibido em Java e em Scala. Este código se encontra disponível no GitHub. Observe o diagrama de classes do exemplo:
-<img src="https://www.dropbox.com/s/sstk1xguyalk5f0/Composite.png" alt=""></p>
+<p>Para fins de demonstração do uso do padrão composite segue um exemplo, cujo código será exibido em Scala. Este código se encontra disponível no GitHub. O diagrama de classes do exemplo está disponível clicando <a href="https://www.dropbox.com/s/sstk1xguyalk5f0/Composite.png">aqui</a>.</p>
 
 <h2>
 <a name="padr%C3%A3o-decorator" class="anchor" href="#padr%C3%A3o-decorator"><span class="octicon octicon-link"></span></a>Padrão Decorator</h2>
@@ -79,14 +81,70 @@ Ele permite acrescentar ou remover responsabilidades a objetos individuais dinam
 </ul><h3>
 <a name="exemplo-1" class="anchor" href="#exemplo-1"><span class="octicon octicon-link"></span></a>Exemplo</h3>
 
-<p>Para fins de demonstração do uso do padrão decorator segue um exemplo, cujo código será exibido em Java e em Scala. Este código se encontra disponível no GitHub no branch "code". Observe o diagrama de classes do exemplo:</p>
+<p>Para fins de demonstração do uso do padrão decorator segue um exemplo, cujo código será exibido em Scala.O diagrama de classes do exemplo está disponível clicando <a href="https://www.dropbox.com/s/nil9tm0iqh8t6kj/Decorator.png">aqui</a>.</p>
+
+<p>Observe a implementação:</p>
+
+<pre><code>trait Cafe {
+  def preco:Double
+  def ingredientes: String
+}
+
+class CafeSimples extends Cafe {
+  override def preco = 1
+  override def ingredientes = "Cafe"
+}
+
+abstract class DecoradorCafe(cafeDecorado: Cafe) extends Cafe {
+
+  val sep = ", "
+
+  override def preco = cafeDecorado.preco
+  override def ingredientes = cafeDecorado.ingredientes
+}
+
+class Leite(cafeDecorado: Cafe) extends DecoradorCafe(cafeDecorado) {
+  override def preco = super.preco + 0.5
+  override def ingredientes = super.ingredientes + sep + "Leite"
+}
+
+class Creme(cafeDecorado: Cafe) extends DecoradorCafe(cafeDecorado) {
+  override def preco = super.preco + 0.7
+  override def ingredientes = super.ingredientes + sep + "Creme"
+}
+
+class Canela(cafeDecorado: Cafe) extends DecoradorCafe(cafeDecorado) {
+  override def preco = super.preco + 0.2
+  override def ingredientes = super.ingredientes + sep + "Canela"
+}
+
+object TesteDecorator {
+  def main(args: Array[String]) = {
+    var c:Cafe = new CafeSimples
+    printf("Preco: %f Ingredientes %s\n", c.preco, c.ingredientes)
+    c = new Leite(c)
+    printf("Preco: %f Ingredientes %s\n", c.preco, c.ingredientes)
+    c = new Canela(c)
+    printf("Preco: %f Ingredientes %s\n", c.preco, c.ingredientes)
+    c = new Creme(c)
+    printf("Preco: %f Ingredientes %s\n", c.preco, c.ingredientes)
+    c = new Canela(c)
+    printf("Preco: %f Ingredientes %s\n", c.preco, c.ingredientes)
+  }
+}
+</code></pre>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/iac-isabella">iac-isabella</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Design Patterns : Composite and Decorator maintained by <a href="https://github.com/iac-isabella">iac-isabella</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
